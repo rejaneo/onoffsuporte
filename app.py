@@ -1,20 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
-
 import os
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Hello, Render!"
-
-if __name__ == "__main__":
-    # Pegue a porta do ambiente (necessário para o Render)
-    port = int(os.environ.get('PORT', 5000))
-    # Inicie o servidor Flask no host 0.0.0.0 e na porta especificada
-    app.run(host='0.0.0.0', port=port, debug=True)
-
 import datetime
 
 app = Flask(__name__)
@@ -44,13 +29,22 @@ def toggle(user):
 
     return redirect(url_for('index'))
 
+@app.route('/clear_history')
+def clear_history():
+    global button_state, history
+    history = []  # Limpa o historico de atendimentos
+    # Reseta os botoes para OFF
+    button_state['Rejane'] = False
+    button_state['Joao'] = False
+    return redirect(url_for('index'))
+
 def register_attendance(user):
     # Registra o atendimento no historico
     attendance = f"Atendimento realizado por {user} em {datetime.datetime.now()}"
     history.append(attendance)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
+if __name__ == "__main__":
+    # Pega a porta do ambiente (necessario para o Render)
+    port = int(os.environ.get('PORT', 5000))
+    # Inicia o servidor Flask no host 0.0.0.0 e na porta especificada
+    app.run(host='0.0.0.0', port=port, debug=True)
