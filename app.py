@@ -1,4 +1,20 @@
 from flask import Flask, render_template, redirect, url_for
+
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Render!"
+
+if __name__ == "__main__":
+    # Pegue a porta do ambiente (necessário para o Render)
+    port = int(os.environ.get('PORT', 5000))
+    # Inicie o servidor Flask no host 0.0.0.0 e na porta especificada
+    app.run(host='0.0.0.0', port=port, debug=True)
+
 import datetime
 
 app = Flask(__name__)
@@ -16,7 +32,7 @@ def index():
 def toggle(user):
     global button_state, history
 
-    # Forca o botao do outro usuario a ficar OFF quando um botão e ligado
+    # Forca o botao do outro usuario a ficar OFF quando um botao e ligado
     if user == 'Rejane':
         button_state['Rejane'] = True
         button_state['Joao'] = False
@@ -35,3 +51,6 @@ def register_attendance(user):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
