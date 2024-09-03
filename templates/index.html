@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atendimentos do Suporte</title>
+    <title>SUPORTE</title>
 </head>
 <body>
-    <h1>Painel de Atendimentos</h1>
+    <h1>Painel de Atendimento</h1>
     <p>Rejane está: {{ 'ON' if button_state['Rejane'] else 'OFF' }}</p>
     <p>João está: {{ 'ON' if button_state['Joao'] else 'OFF' }}</p>
 
-    <a href="{{ url_for('toggle', user='Rejane') }}">Suporte 01 - Rejane</a><br>
-    <a href="{{ url_for('toggle', user='Joao') }}">Suporte 02 - João</a><br><br>
+    <!-- Botão para Rejane -->
+    <button onclick="toggleUser('Rejane')">Suporte 01 - Rejane</button><br><br>
+
+    <!-- Botão para João -->
+    <button onclick="toggleUser('Joao')">Suporte 02 - João</button><br><br>
 
     <!-- Botão para limpar o histórico -->
-    <a href="{{ url_for('clear_history') }}">Limpar Histórico</a>
+    <button onclick="window.location.href='{{ url_for('clear_history') }}'">Limpar Histórico</button>
 
     <h2>Histórico de Atendimentos</h2>
     <ul>
@@ -22,5 +25,17 @@
         <li>{{ item }}</li>
         {% endfor %}
     </ul>
+
+    <script>
+        function toggleUser(user) {
+            // Redireciona para a URL de toggle do usuário
+            window.location.href = '/toggle/' + user;
+        }
+
+        // Atualiza a página a cada 5 segundos
+        setInterval(function() {
+            location.reload();
+        }, 5000); // Atualiza a cada 5000 milissegundos (5 segundos)
+    </script>
 </body>
 </html>
