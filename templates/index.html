@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimentos do Suporte</title>
+</head>
+<body>
+    <h1>Atendimentos do Suporte</h1>
+    <div>
+        <p>Rejane: {% if button_state['Rejane'] %}ON{% else %}OFF{% endif %}</p>
+        <p>João: {% if button_state['Joao'] %}ON{% else %}OFF{% endif %}</p>
+    </div>
+    <div>
+        <a href="{{ url_for('toggle', user='Rejane') }}">• Suporte 01 Rejane</a><br>
+        <a href="{{ url_for('toggle', user='Joao') }}">• Suporte 02 Joao</a>
+    </div>
+    <div>
+        <h2>Historico de Atendimentos</h2>
+        <ul>
+            {% for entry in history %}
+                <li>{{ entry }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
