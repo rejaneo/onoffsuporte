@@ -6,7 +6,7 @@ import pytz  # Importa a biblioteca pytz
 app = Flask(__name__)
 
 # Inicializa o estado do botão e o histórico de atendimentos
-button_state = {'Rejane': False, 'Joao': False}
+button_state = {'Rejane': False, 'Jean': False}
 history = []
 
 @app.route('/')
@@ -21,10 +21,10 @@ def toggle(user):
     # Força o botão do outro usuário a ficar OFF quando um botão é ligado
     if user == 'Rejane':
         button_state['Rejane'] = True
-        button_state['Joao'] = False
+        button_state['Jean'] = False
         register_attendance(user)
-    elif user == 'Joao':
-        button_state['Joao'] = True
+    elif user == 'Jean':
+        button_state['Jean'] = True
         button_state['Rejane'] = False
         register_attendance(user)
 
@@ -36,7 +36,7 @@ def clear_history():
     history = []  # Limpa o histórico de atendimentos
     # Reseta os botões para OFF
     button_state['Rejane'] = False
-    button_state['Joao'] = False
+    button_state['Jean'] = False
     return redirect(url_for('index'))
 
 def register_attendance(user):
