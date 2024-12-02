@@ -8,13 +8,13 @@
 <body>
     <h1>Painel de Atendimento</h1>
     <p>Rejane está: {{ 'ON' if button_state['Rejane'] else 'OFF' }}</p>
-    <p>João está: {{ 'ON' if button_state['Joao'] else 'OFF' }}</p>
+    <p>Jean está: {{ 'ON' if button_state['Jean'] else 'OFF' }}</p>
 
     <!-- Botão para Rejane -->
     <button onclick="toggleUser('Rejane')">Suporte 01 - Rejane</button><br><br>
 
-    <!-- Botão para João -->
-    <button onclick="toggleUser('Joao')">Suporte 02 - João</button><br><br>
+    <!-- Botão para Jean -->
+    <button onclick="toggleUser('Jean')">Suporte 02 - Jean</button><br><br>
 
     <!-- Botão para limpar o histórico -->
     <button onclick="window.location.href='{{ url_for('clear_history') }}'">Limpar Histórico</button>
